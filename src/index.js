@@ -11,9 +11,6 @@ app.use((req, res, next) => {
     express.json()(req, res, next);
 });
 
-
-
-
 //type request 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -27,5 +24,5 @@ app.use('/characters', router);
 
 //Init Server
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`holiiiiii ${port}`)
 });
