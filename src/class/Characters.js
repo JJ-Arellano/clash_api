@@ -5,12 +5,29 @@ export class Characters {
         this.characters = characters
     };
 
-    getCharacters({limit, start}){
-        const startPagination = (start === 0) ? 0 : start;
-        const limitPagination =  (!isNaN(limit) && limit > 0) ? (start + limit) : (start + 5);
-        const characters_pagination = this.characters.slice(startPagination, limitPagination);
-        return characters_pagination;
+    
+//paginacion
+getCharacters({ page = 1, perPage = 5 }) {
+    const totalCharacters = this.characters.length;
+    const validPerPage = (perPage > 0) ? perPage : 5;
+    const totalPages = Math.ceil(totalCharacters / validPerPage);
+
+    const validPage = (page > 0 && page <= totalPages) ? page : 1;
+
+    const startIndex = (validPage - 1) * validPerPage;
+    const endIndex = startIndex + validPerPage;
+
+    const characters_pagination = this.characters.slice(startIndex, endIndex);
+
+    return {
+        PaginaActual: validPage,
+        NumTotalPaginas: totalPages,
+        PersonajesPorPagina: validPerPage,
+        TotalPersonajes: totalCharacters,
+        data: characters_pagination
     };
+}
+
 
     findCharacterById(id){
         const findIndex = this.characters.findIndex(entry => entry.id === id);
