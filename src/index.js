@@ -24,5 +24,5 @@ app.use('/characters', router);
 
 //Init Server
 app.listen(port, () => {
-  console.log(`holiiiiii ${port}`)
+  console.log(`Listen app in port ${port}`)
 });
