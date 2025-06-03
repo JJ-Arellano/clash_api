@@ -7,26 +7,29 @@ export class Characters {
 
     
 //paginacion
-getCharacters({ page = 1, perPage = 5 }) {
+
+getCharacters({ page = 1, limit = 5 }) {
     const totalCharacters = this.characters.length;
-    const validPerPage = (perPage > 0) ? perPage : 5;
-    const totalPages = Math.ceil(totalCharacters / validPerPage);
+    const validLimit = (limit > 0) ? limit : 5;
+    const totalPages = Math.ceil(totalCharacters / validLimit);
 
     const validPage = (page > 0 && page <= totalPages) ? page : 1;
 
-    const startIndex = (validPage - 1) * validPerPage;
-    const endIndex = startIndex + validPerPage;
+    const startIndex = (validPage - 1) * validLimit;
+    const endIndex = startIndex + validLimit;
 
     const characters_pagination = this.characters.slice(startIndex, endIndex);
 
     return {
         PaginaActual: validPage,
         NumTotalPaginas: totalPages,
-        PersonajesPorPagina: validPerPage,
+        PersonajesPorPagina: validLimit,
         TotalPersonajes: totalCharacters,
         data: characters_pagination
     };
 }
+
+//paginacion
 
 
     findCharacterById(id){

@@ -7,19 +7,22 @@ export const router = express.Router();
 const characterClass =  new Characters(characters); 
 
 // getCharacters for pagination
+
 router.get('/', (req, res) => {
-    const { page, perPage } = req.query;
+    const { page, limit } = req.query;
 
     const pageNum = parseInt(page);
-    const perPageNum = parseInt(perPage);
+    const limitNum = parseInt(limit);
 
-    if (isNaN(pageNum) || isNaN(perPageNum)) {
-        return res.status(400).json({ status: 400, message: 'Bad Request: page y perPage deben ser números' });
+    if (isNaN(pageNum) || isNaN(limitNum)) {
+        return res.status(400).json({ status: 400, message: 'Bad Request: page y limit deben ser números' });
     }
 
-    const data = characterClass.getCharacters({ page: pageNum, perPage: perPageNum });
+    const data = characterClass.getCharacters({ page: pageNum, limit: limitNum });
     res.status(200).json(data);
 });
+
+// pagination
 
 
 //createCharacter
