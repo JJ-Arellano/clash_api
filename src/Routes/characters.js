@@ -19,8 +19,14 @@ router.get('/', (req, res) => {
     }
 
     const data = characterClass.getCharacters({ page: pageNum, limit: limitNum });
+
+    if (data.error) {
+        return res.status(404).json({ status: 404, message: data.error });
+    }
+
     res.status(200).json(data);
 });
+
 
 // pagination
 

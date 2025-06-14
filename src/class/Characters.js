@@ -13,7 +13,18 @@ getCharacters({ page = 1, limit = 5 }) {
     const validLimit = (limit > 0) ? limit : 5;
     const totalPages = Math.ceil(totalCharacters / validLimit);
 
-    const validPage = (page > 0 && page <= totalPages) ? page : 1;
+    if (page > totalPages) {
+        return {
+            error: `La página solicitada (${page}) excede el número total de páginas (${totalPages}).`,
+            PaginaActual: totalPages,
+            NumTotalPaginas: totalPages,
+            PersonajesPorPagina: validLimit,
+            TotalPersonajes: totalCharacters,
+            data: []
+        };
+    }
+
+    const validPage = (page > 0) ? page : 1;
 
     const startIndex = (validPage - 1) * validLimit;
     const endIndex = startIndex + validLimit;
@@ -28,6 +39,7 @@ getCharacters({ page = 1, limit = 5 }) {
         data: characters_pagination
     };
 }
+
 
 //paginacion
 

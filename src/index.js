@@ -32,7 +32,7 @@ app.listen(port, () => {
 
 
 // consumir api x
-app.post('/getPostClashRoyale', async (req, res) => {
+app.post('/api/ClashRoyale/Media', async (req, res) => {
   try {
     const { token, query } = req.body;
 
@@ -68,7 +68,7 @@ app.post('/getPostClashRoyale', async (req, res) => {
     res.status(200).json({ data: result });
 
   } catch (error) {
-    console.error('Error en /getPostClashRoyale:', error);
+    console.error('Error en /api/ClashRoyale/Media', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
