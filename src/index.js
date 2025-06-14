@@ -40,9 +40,8 @@ app.post('/api/ClashRoyale/Media', async (req, res) => {
       return res.status(400).json({ error: 'Bad request, token and query are required' });
     }
 
-    // URL con parámetros
     const encodedQuery = encodeURIComponent(query);
-    const url = `https://api.twitter.com/2/tweets/search/recent?query=${encodedQuery}&max_results=10`;
+    const url = `https://api.twitter.com/2/tweets/search/recent?query=${encodedQuery}&max_results=10&expansions=author_id&user.fields=username,name`;
 
     const response = await fetch(url, {
       method: 'GET',
@@ -53,25 +52,36 @@ app.post('/api/ClashRoyale/Media', async (req, res) => {
     });
 
     if (!response.ok) {
-      const errorText = await response.text(); // para ver el mensaje completo
+      const errorText = await response.text();
       return res.status(response.status).json({ error: 'Error from Twitter API', details: errorText });
     }
 
     const data = await response.json();
 
-    const mapperData = (data) => {
-      return data;
-    };
+    const usersMap = new Map();
+    if (data.includes && data.includes.users) {
+      for (const user of data.includes.users) {
+        usersMap.set(user.id, user);
+      }
+    }
 
-    const result = mapperData(data);
+    const tweetsWithUser = data.data.map(tweet => {
+      const user = usersMap.get(tweet.author_id);
+      return {
+        id: tweet.id,
+        text: tweet.text,
+        author: user ? { username: user.username, name: user.name } : null
+      };
+    });
 
-    res.status(200).json({ data: result });
+    res.status(200).json({ data: tweetsWithUser });
 
   } catch (error) {
     console.error('Error en /api/ClashRoyale/Media', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
 
 
  
