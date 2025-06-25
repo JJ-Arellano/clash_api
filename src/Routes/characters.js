@@ -1,13 +1,15 @@
 import express from 'express';
 import { characters } from '../helpers/data.js';
 import { Characters } from '../class/Characters.js';
+import { Store } from '../services/store.js';
 
 export const router = express.Router();
 
-const characterClass =  new Characters(characters); 
+const serviceFile = new Store();
+const characterClass =  new Characters(serviceFile);
+
 
 // getCharacters for pagination
-
 router.get('/', (req, res) => {
     const { page, limit } = req.query;
 

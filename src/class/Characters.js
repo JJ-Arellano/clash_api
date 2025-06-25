@@ -1,67 +1,65 @@
 export class Characters {
-    characters = [];
+    serviceFile;
 
-    constructor(characters){
-        this.characters = characters
+    constructor(serviceFile){
+        this.serviceFile = serviceFile;
     };
 
     
-//paginacion
+    //paginacion
+    getCharacters({ page = 1, limit = 5 }) {
 
-getCharacters({ page = 1, limit = 5 }) {
-    const totalCharacters = this.characters.length;
-    const validLimit = (limit > 0) ? limit : 5;
-    const totalPages = Math.ceil(totalCharacters / validLimit);
+        const characters = this.serviceFile.getCharacterAll();
+        const totalCharacters = characters.length;
+        const validLimit = (limit > 0) ? limit : 5;
+        const totalPages = Math.ceil(totalCharacters / validLimit);
 
-    if (page > totalPages) {
+        if (page > totalPages) {
+            return {
+                error: `La página solicitada (${page}) excede el número total de páginas (${totalPages}).`,
+                PaginaActual: totalPages,
+                NumTotalPaginas: totalPages,
+                PersonajesPorPagina: validLimit,
+                TotalPersonajes: totalCharacters,
+                data: []
+            };
+        }
+
+        const validPage = (page > 0) ? page : 1;
+
+        const startIndex = (validPage - 1) * validLimit;
+        const endIndex = startIndex + validLimit;
+
+        const characters_pagination = characters.slice(startIndex, endIndex);
+
         return {
-            error: `La página solicitada (${page}) excede el número total de páginas (${totalPages}).`,
-            PaginaActual: totalPages,
+            PaginaActual: validPage,
             NumTotalPaginas: totalPages,
             PersonajesPorPagina: validLimit,
             TotalPersonajes: totalCharacters,
-            data: []
+            data: characters_pagination
         };
-    }
-
-    const validPage = (page > 0) ? page : 1;
-
-    const startIndex = (validPage - 1) * validLimit;
-    const endIndex = startIndex + validLimit;
-
-    const characters_pagination = this.characters.slice(startIndex, endIndex);
-
-    return {
-        PaginaActual: validPage,
-        NumTotalPaginas: totalPages,
-        PersonajesPorPagina: validLimit,
-        TotalPersonajes: totalCharacters,
-        data: characters_pagination
-    };
-}
-
-
-//paginacion
-
+    }; 
 
     findCharacterById(id){
-        const findIndex = this.characters.findIndex(entry => entry.id === id);
-        if(findIndex < 0) return;
-        return this.characters[findIndex];  
+        const findCharacter = this.serviceFile.getCharacterById(id);
+        if(!findCharacter) return;
+        return findCharacter;  
     };
     
     findCharacterByName(name){ 
-        const findIndex = this.characters.findIndex(entry => entry.nombre === String(name).trim());
-        if(findIndex < 0) return;
-        return this.characters[findIndex];  
+        const findCharacter = this.serviceFile.getCharacterByName(name);
+        if(!findCharacter) return;
+        return findCharacter;
     };
 
     createCharacter(character){
+        const characters = this.serviceFile.getCharacterAll();
         const {nombre, calidad, clase, salud, ataque} = character;
         const characterFind = this.findCharacterByName(nombre);
         if(characterFind) return;
         const entity = {
-            id: Number(this.characters.length + 1),
+            id: (characters.length) ? characters[characters.length - 1].id + 1 : 1,
             nombre: String(nombre).trim(),
             calidad: String(calidad).trim(),
             clase: String(clase).trim(),
@@ -69,15 +67,13 @@ getCharacters({ page = 1, limit = 5 }) {
             ataque: Number(ataque),
             createdAt: new Date()
         };
-        this.characters.push(entity);
+        this.serviceFile.create(entity);
         return entity;
     }; 
 
     deleteCharacter(id){
-        const characterFind = this.findCharacterById(id);
+        const characterFind = this.serviceFile.delete(id);
         if(!characterFind) return;  
-        const newCharacters = this.characters.filter(entry => entry.id !== id);
-        this.characters = newCharacters;
         return characterFind; 
     };
 };
