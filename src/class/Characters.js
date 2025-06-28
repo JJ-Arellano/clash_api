@@ -10,6 +10,7 @@ export class Characters {
     getCharacters({ page = 1, limit = 5 }) {
 
         const characters = this.serviceFile.getCharacterAll();
+        console.log(characters.length);
         const totalCharacters = characters.length;
         const validLimit = (limit > 0) ? limit : 5;
         const totalPages = Math.ceil(totalCharacters / validLimit);

@@ -9,15 +9,6 @@
     "fechaCreacion": "2025-06-24T00:00:00.000Z"
   },
   {
-    "id": 3,
-    "nombre": "P.E.K.K.A",
-    "calidad": "Épica",
-    "clase": "Tanque",
-    "salud": 5260,
-    "ataque": 678,
-    "fechaCreacion": "2025-06-24T00:00:00.000Z"
-  },
-  {
     "id": 4,
     "nombre": "Tronco",
     "calidad": "Legendaria",
@@ -234,5 +225,75 @@
     "ataque": 50,
     "createdAt": "2025-06-25T01:43:38.606Z",
     "fechaCreacion": "2025-06-25T01:43:38.607Z"
+  },
+  {
+    "id": 28,
+    "nombre": "1324523636",
+    "calidad": "Epico",
+    "clase": "Mago",
+    "salud": 2000,
+    "ataque": 30,
+    "createdAt": "2025-06-25T02:24:30.267Z",
+    "fechaCreacion": "2025-06-25T02:24:30.268Z"
+  },
+  {
+    "id": 29,
+    "nombre": "1324523636",
+    "calidad": "Epico",
+    "clase": "Mago",
+    "salud": 2000,
+    "ataque": 30,
+    "createdAt": "2025-06-25T02:24:44.151Z",
+    "fechaCreacion": "2025-06-25T02:24:44.152Z"
+  },
+  {
+    "id": 30,
+    "nombre": "1324523636",
+    "calidad": "69",
+    "clase": "Mago",
+    "salud": 3000,
+    "ataque": 30,
+    "createdAt": "2025-06-25T02:25:10.690Z",
+    "fechaCreacion": "2025-06-25T02:25:10.691Z"
+  },
+  {
+    "id": 31,
+    "nombre": "Duende Pascual",
+    "calidad": "Epico",
+    "clase": "Tropa",
+    "salud": 2000,
+    "ataque": 100,
+    "createdAt": "2025-06-25T02:29:26.285Z",
+    "fechaCreacion": "2025-06-25T02:29:26.286Z"
+  },
+  {
+    "id": 32,
+    "nombre": "Duende de Fuego",
+    "calidad": "Epico",
+    "clase": "Tropa",
+    "salud": 2000,
+    "ataque": 200,
+    "createdAt": "2025-06-25T02:32:19.795Z",
+    "fechaCreacion": "2025-06-25T02:32:19.796Z"
+  },
+  {
+    "id": 33,
+    "nombre": "Perro Infernal",
+    "calidad": "Epico",
+    "clase": "Tanque",
+    "salud": 5000,
+    "ataque": 200,
+    "createdAt": "2025-06-25T02:34:43.695Z",
+    "fechaCreacion": "2025-06-25T02:34:43.695Z"
+  },
+  {
+    "id": 34,
+    "nombre": "Perro Gelido",
+    "calidad": "Epico",
+    "clase": "Tanque",
+    "salud": 5000,
+    "ataque": 200,
+    "createdAt": "2025-06-25T02:47:35.989Z",
+    "fechaCreacion": "2025-06-25T02:47:35.990Z"
   }
 ]

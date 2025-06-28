@@ -70,11 +70,11 @@ app.post('/api/ClashRoyale/Media', async (req, res) => {
       return {
         id: tweet.id,
         text: tweet.text,
-        author: user ? { username: user.username, name: user.name } : null
+        author: user ? user.username : null
       };
     });
 
-    res.status(200).json({ data: tweetsWithUser });
+    res.status(200).json(tweetsWithUser);
 
   } catch (error) {
     console.error('Error en /api/ClashRoyale/Media', error);

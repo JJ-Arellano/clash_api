@@ -36,7 +36,15 @@ router.get('/', (req, res) => {
 //createCharacter
 router.post('/create', (req, res) => {
     const {nombre, calidad, clase, salud, ataque} = req.body;
-    if(!nombre || !calidad || !clase || isNaN(salud) || isNaN(ataque)) return res.status(400).json({ status: 400, message: 'Bad Request'});
+    let message = null; 
+
+    if (!nombre) message = 'Nombre es requerido';
+    else if (!calidad) message = 'Calidad es requerida';
+    else if (!clase) message = 'Clase es requerida';
+    else if (isNaN(salud)) message = 'Salud debe ser un número';
+    else if (isNaN(ataque)) message = 'Ataque debe ser un número';
+    
+    if(message) return res.status(400).json({ status: 400, message: message});
     const createCharacter = characterClass.createCharacter({nombre, calidad, clase, salud, ataque});
     if(!createCharacter) return res.status(404).json({status: 404, message: 'Alredy exist Character in database'});
     res.status(200).json(createCharacter);
