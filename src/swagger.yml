@@ -30,22 +30,47 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: integer
-                    nombre:
-                      type: string
-                    calidad:
-                      type: string
-                    clase:
-                      type: string
-                    salud:
-                      type: integer
-                    ataque:
-                      type: integer
+                type: object
+                properties:
+                  PaginaActual:
+                    type: integer
+                    example: 1
+                  NumTotalPaginas:
+                    type: integer
+                    example: 32
+                  PersonajesPorPagina:
+                    type: integer
+                    example: 1
+                  TotalPersonajes:
+                    type: integer
+                    example: 32
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 2
+                        nombre:
+                          type: string
+                          example: Mago Eléctrico
+                        calidad:
+                          type: string
+                          example: Épica
+                        clase:
+                          type: string
+                          example: Apoyo
+                        salud:
+                          type: integer
+                          example: 944
+                        ataque:
+                          type: integer
+                          example: 159
+                        fechaCreacion:
+                          type: string
+                          format: date-time
+                          example: "2025-06-24T00:00:00.000Z"
 
   /characters/create:
     post:
@@ -81,6 +106,33 @@ paths:
       responses:
         '201':
           description: Personaje creado exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 35
+                  nombre:
+                    type: string
+                    example: Perro Gel
+                  calidad:
+                    type: string
+                    example: Epico
+                  clase:
+                    type: string
+                    example: Tanque
+                  salud:
+                    type: integer
+                    example: 5000
+                  ataque:
+                    type: integer
+                    example: 200
+                  createdAt:
+                    type: string
+                    format: date-time
+                    example: "2025-07-05T01:39:37.063Z"
         '400':
           description: Error de validación
           content:
@@ -110,5 +162,13 @@ paths:
       responses:
         '200':
           description: Personaje eliminado exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: ok
         '404':
           description: Personaje no encontrado
