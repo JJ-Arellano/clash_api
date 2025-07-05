@@ -1,0 +1,114 @@
+openapi: 3.0.0
+info:
+  title: Characters API
+  version: 1.0.0
+  description: API para manejar personajes
+
+servers:
+  - url: http://localhost:3000
+
+paths:
+  /characters:
+    get:
+      summary: Obtener una lista de personajes
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+          description: Número de página
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            default: 10
+          description: Límite de personajes por página
+      responses:
+        '200':
+          description: Lista de personajes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    nombre:
+                      type: string
+                    calidad:
+                      type: string
+                    clase:
+                      type: string
+                    salud:
+                      type: integer
+                    ataque:
+                      type: integer
+
+  /characters/create:
+    post:
+      summary: Crear un nuevo personaje
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - nombre
+                - calidad
+                - clase
+                - salud
+                - ataque
+              properties:
+                nombre:
+                  type: string
+                  example: Perro Gelido
+                calidad:
+                  type: string
+                  example: Epico
+                clase:
+                  type: string
+                  example: Tanque
+                salud:
+                  type: integer
+                  example: 5000
+                ataque:
+                  type: integer
+                  example: 200
+      responses:
+        '201':
+          description: Personaje creado exitosamente
+        '400':
+          description: Error de validación
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    enum:
+                      - Nombre es requerido
+                      - Calidad es requerida
+                      - Clase es requerida
+                      - Salud debe ser un número
+                      - Ataque debe ser un número
+
+  /characters/delete/{id}:
+    delete:
+      summary: Eliminar un personaje por ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: ID del personaje a eliminar
+      responses:
+        '200':
+          description: Personaje eliminado exitosamente
+        '404':
+          description: Personaje no encontrado

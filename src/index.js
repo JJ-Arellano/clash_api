@@ -1,15 +1,26 @@
 import express from 'express';
 import {router} from './Routes/characters.js';
+import swaggerUi from 'swagger-ui-express';
+import YAML from 'yamljs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+
+// Esto es para obtener correctamente la ruta actual del archivo
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+// Carga el archivo swagger.yml
+const swaggerDocument = YAML.load(path.join(__dirname, 'swagger.yml'));
 
 const app = express();
 const port = 3000;
 
-
-
-
 app.use((req, res, next) => {
     express.json()(req, res, next);
 });
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 
 //type request 
 app.use(express.json());
@@ -18,6 +29,7 @@ app.use((req, res, next) => {
   res.setHeader('Content-Type', 'application/json');
   next();
 });
+
 
 //Routes
 app.use('/characters', router);
