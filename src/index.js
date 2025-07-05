@@ -10,9 +10,9 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 // Carga el archivo swagger.yml
-const swaggerDocument = YAML.load(path.join(__dirname, 'swagger.yml'));
+const swaggerDocument = YAML.load(path.join(__dirname, 'api-docs.yml'));
 
-const app = express();
+const app = express();  
 const port = 3000;
 
 app.use((req, res, next) => {
