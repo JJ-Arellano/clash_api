@@ -22,6 +22,8 @@ app.use((req, res, next) => {
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
+
+
 //type request 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
