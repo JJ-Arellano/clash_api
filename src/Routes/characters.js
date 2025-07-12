@@ -54,6 +54,6 @@ router.post('/create', (req, res) => {
 router.delete('/delete/:id', (req, res) => {
     const {id} = req.params;
     const deleteCharacter = characterClass.deleteCharacter(Number(id));
-    if(!deleteCharacter) return res.status(404).json({ status: 400, message: 'Not delete character'});
+    if(!deleteCharacter) return res.status(400).json({ status: 400, message: 'Not delete character'});
     return res.status(200).json({message: 'ok'})
 });

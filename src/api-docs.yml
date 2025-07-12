@@ -104,7 +104,7 @@ paths:
                   type: integer
                   example: 200
       responses:
-        '201':
+        '200':
           description: Personaje creado exitosamente
           content:
             application/json:
@@ -134,7 +134,7 @@ paths:
                     format: date-time
                     example: "2025-07-05T01:39:37.063Z"
         '400':
-          description: Error de validación
+          description: Error de parametros
           content:
             application/json:
               schema:
@@ -148,6 +148,22 @@ paths:
                       - Clase es requerida
                       - Salud debe ser un número
                       - Ataque debe ser un número
+                  status: 
+                    type: integer
+                    example: 404
+        '404':
+          description: Character ya creado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string 
+                    example: "Alredy exist Character in database"
 
   /characters/delete/{id}:
     delete:
@@ -171,7 +187,18 @@ paths:
                     type: string
                     example: ok
         '404':
-          description: Personaje no encontrado
+          description: Personaje eliminado exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Not delete character
+                  status: 
+                    type: integer
+                    example: 400
 
   /api/ClashRoyale/Media:
     post:

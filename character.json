@@ -295,5 +295,25 @@
     "ataque": 200,
     "createdAt": "2025-06-25T02:47:35.989Z",
     "fechaCreacion": "2025-06-25T02:47:35.990Z"
+  },
+  {
+    "id": 35,
+    "nombre": "Perro soccer",
+    "calidad": "Epico",
+    "clase": "Tanque",
+    "salud": 5000,
+    "ataque": 200,
+    "createdAt": "2025-07-12T01:28:53.740Z",
+    "fechaCreacion": "2025-07-12T01:28:53.741Z"
+  },
+  {
+    "id": 36,
+    "nombre": "Perro socce",
+    "calidad": "Epico",
+    "clase": "Tanque",
+    "salud": 5000,
+    "ataque": 200,
+    "createdAt": "2025-07-12T01:31:41.069Z",
+    "fechaCreacion": "2025-07-12T01:31:41.071Z"
   }
 ]
