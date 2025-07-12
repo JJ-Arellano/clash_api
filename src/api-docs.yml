@@ -172,3 +172,72 @@ paths:
                     example: ok
         '404':
           description: Personaje no encontrado
+
+  /api/ClashRoyale/Media:
+    post:
+      summary: Obtener publicaciones oficiales de Clash Royale
+      description: >
+        Este endpoint permite obtener publicaciones del perfil oficial de Clash Royale desde la API de Twitter. 
+        Requiere autenticación Bearer (el mismo token del body) y envío obligatorio de `token` y `query`.
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - token
+                - query
+              properties:
+                token:
+                  type: string
+                  example: AAAAAAAAAAAAAAAAAAAAADXo2AEAAAAAb1irf1fBFB4AyI6rf3ORVJU3jWI%3DlVoj1Q4z6YDIycoAXgxRg8CmnPRdEs7FqJ9rDb2RnB2NzvzxdA
+                query:
+                  type: string
+                  example: from:ClashRoyale
+      responses:
+        '200':
+          description: Publicaciones recuperadas exitosamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: "1943777316498551191"
+                    text:
+                      type: string
+                      example: "One Barrel not enough? How 'bout two? 💀\n\nSkeleton Barrel Evolution Draft Challenge awaits https://t.co/tWk821lYTf"
+                    author:
+                      type: string
+                      example: "ClashRoyale"
+
+        '400':
+          description: Faltan parámetros obligatorios en el body
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Bad request, token and query are required
+
+        '429':
+          description: Límite de peticiones excedido (rate limit de Twitter)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Error from Twitter API
+                  details:
+                    type: string
+                    example: '{"title":"Too Many Requests","detail":"Too Many Requests","type":"about:blank","status":429}'
