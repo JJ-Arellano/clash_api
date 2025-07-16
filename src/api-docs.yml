@@ -187,7 +187,7 @@ paths:
                     type: string
                     example: ok
         '404':
-          description: Personaje eliminado exitosamente
+          description: Personaje no encontrado
           content:
             application/json:
               schema:
@@ -198,7 +198,7 @@ paths:
                     example: Not delete character
                   status: 
                     type: integer
-                    example: 400
+                    example: 404
 
   /api/ClashRoyale/Media:
     post:
