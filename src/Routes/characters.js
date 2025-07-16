@@ -34,7 +34,7 @@ router.get('/', (req, res) => {
 
 
 //createCharacter
-router.post('/create', (req, res) => {
+router.post('/', (req, res) => {
     const {nombre, calidad, clase, salud, ataque} = req.body;
     let message = null; 
 
@@ -51,7 +51,7 @@ router.post('/create', (req, res) => {
 });
 
 //deleteCharacter
-router.delete('/delete/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     const {id} = req.params;
     const deleteCharacter = characterClass.deleteCharacter(Number(id));
     if(!deleteCharacter) return res.status(400).json({ status: 400, message: 'Not delete character'});

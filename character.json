@@ -9,24 +9,6 @@
     "fechaCreacion": "2025-06-24T00:00:00.000Z"
   },
   {
-    "id": 4,
-    "nombre": "Tronco",
-    "calidad": "Legendaria",
-    "clase": "Objeto",
-    "salud": 0,
-    "ataque": 300,
-    "fechaCreacion": "2025-06-24T00:00:00.000Z"
-  },
-  {
-    "id": 5,
-    "nombre": "Princesa",
-    "calidad": "Legendaria",
-    "clase": "Tropa",
-    "salud": 870,
-    "ataque": 570,
-    "fechaCreacion": "2025-06-24T00:00:00.000Z"
-  },
-  {
     "id": 6,
     "nombre": "Bola de fuego",
     "calidad": "Raro",

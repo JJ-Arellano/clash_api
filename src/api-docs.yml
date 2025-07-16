@@ -72,7 +72,7 @@ paths:
                           format: date-time
                           example: "2025-06-24T00:00:00.000Z"
 
-  /characters/create:
+  /characters:
     post:
       summary: Crear un nuevo personaje
       requestBody:
@@ -165,7 +165,7 @@ paths:
                     type: string 
                     example: "Alredy exist Character in database"
 
-  /characters/delete/{id}:
+  /characters/{id}:
     delete:
       summary: Eliminar un personaje por ID
       parameters:
