@@ -14,7 +14,7 @@ info:
     - Jorge Ángel de león Catarino 
     - Ángel Antonio Álvarez Cantú 
 
-    [Royal Legion] (https://github.com/JJ-Arellano/clash_api)
+    [Royal Legion](https://github.com/JJ-Arellano/clash_api)
 servers:
   - url: http://localhost:3000
 
