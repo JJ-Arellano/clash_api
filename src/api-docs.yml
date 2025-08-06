@@ -1,11 +1,20 @@
 openapi: 3.0.4
 info:
-  title: Characters API
+  title: Royal Legion
   version: 1.0.0
-  description: Plantilla  de Open Api 3.0.4 que proporciona una colección estructurada de cartas del universo Clash Royale, cada una representada como un objeto con atributos definidos. El objetivo principal de la API es permitir el acceso, consulta y manipulación de cartas utilizadas en el juego, útiles para propósitos como visualización, análisis, edición o implementación en un sistema de gestión.
+  description: |
+    Plantilla  de Open Api 3.0.4 que proporciona una colección estructurada de cartas del universo Clash Royale, cada una representada como un objeto con atributos definidos. El objetivo principal de la API es permitir el acceso, consulta y manipulación de cartas utilizadas en el juego, útiles para propósitos como visualización, análisis, edición o implementación en un sistema de gestión.
+    Cada carta contiene propiedades clave como su nombre, calidad, clase, salud, ataque, fecha de creación y el ID la cual se agrega automaticamente. La información está disponible en formato JSON, lo que la hace fácilmente integrable con aplicaciones web, móviles o backend.
+   
+    ### Equipo Royal Legion
+    - Ricardo Alejandro Rodríguez Viera 
+    - Juan José Hernández Arellano 
+    - José Alberto Castro Sarmiento 
+    - Rodrigo Pascual Hernández 
+    - Jorge Ángel de león Catarino 
+    - Ángel Antonio Álvarez Cantú 
 
-   Cada carta contiene propiedades clave como su nombre, calidad, clase, salud, ataque, fecha de creación y el ID la cual se agrega automaticamente. La información está disponible en formato JSON, lo que la hace fácilmente integrable con aplicaciones web, móviles o backend.
-
+    [Royal Legion] (https://github.com/JJ-Arellano/clash_api)
 servers:
   - url: http://localhost:3000
 
@@ -273,3 +282,9 @@ paths:
                   details:
                     type: string
                     example: '{"title":"Too Many Requests","detail":"Too Many Requests","type":"about:blank","status":429}'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
