@@ -13,6 +13,7 @@ paths:
   /characters:
     get:
       summary: Obtener una lista de personajes
+      description: Este endpoint permite obtener un listado paginado de recursos, brindando acceso organizado a los datos almacenados. Mediante parámetros de consulta (page y limit), se puede especificar el número de página deseado y la cantidad de elementos que se desean mostrar por página. La respuesta incluye información detallada como la página actual, el número total de páginas, la cantidad de recursos por página y el total general de registros disponibles. Cada elemento dentro del listado es un objeto que contiene atributos clave como ID, nombre, categoría, tipo, valores numéricos y la fecha de creación. Esta funcionalidad es útil para explorar grandes volúmenes de datos de manera ordenada y eficiente, especialmente en interfaces que requieren navegación por bloques de contenido.
       parameters:
         - in: query
           name: page
@@ -77,6 +78,7 @@ paths:
  
     post:
       summary: Crear un nuevo personaje
+      description: Este endpoint permite crear un nuevo recurso dentro del sistema mediante el envío de datos en formato JSON. Es necesario proporcionar todos los campos obligatorios definidos para el recurso, como nombre, categoría, tipo y características numéricas. Al realizar la solicitud correctamente, se genera automáticamente un identificador único y una fecha de creación, los cuales se devuelven junto con los demás datos ingresados. Si alguno de los campos es inválido o está incompleto, el sistema responderá con un mensaje de error específico indicando qué parámetro falta o es incorrecto. Además, si el recurso ya existe, se notificará que no puede volver a crearse. Esta operación es fundamental para alimentar el sistema con nuevos datos, asegurando al mismo tiempo la validez y unicidad de la información registrada.
       requestBody:
         required: true
         content:
@@ -170,6 +172,7 @@ paths:
   /characters/{id}:
     delete:
       summary: Eliminar un personaje por ID
+      description: Este endpoint permite eliminar un recurso específico del sistema utilizando su identificador único (ID) como parámetro en la ruta. Al proporcionar un ID válido, el sistema busca y elimina el recurso correspondiente, devolviendo un mensaje de confirmación si la operación se realiza con éxito. En caso de que el ID no exista en el sistema o no se encuentre el recurso asociado, se devuelve un mensaje de error indicando que no fue posible completar la eliminación. Esta funcionalidad es clave para mantener actualizado el sistema, permitiendo la remoción de registros innecesarios o incorrectos.
       parameters:
         - in: path
           name: id
